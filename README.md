@@ -81,10 +81,10 @@ FoundIt/
 Install:
 
 1. JDK 21
-2. Apache Tomcat 10.1
+2. Apache Tomcat 10.1 (current 10.1.x release: 10.1.60)
 3. MySQL Server 8.4+
 4. VS Code + Extension Pack for Java
-5. MySQL Connector/J
+5. MySQL Connector/J 26.7.0 (current GA)
 
 ## 1. Database setup
 
