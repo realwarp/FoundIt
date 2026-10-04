@@ -1,0 +1,11 @@
+Copy `WebContent/*` to:
+
+`C:\apache-tomcat-10.1\webapps\FoundIt\`
+
+Copy `build/classes/*` to:
+
+`C:\apache-tomcat-10.1\webapps\FoundIt\WEB-INF\classes\`
+
+Put the MySQL Connector/J JAR in:
+
+`C:\apache-tomcat-10.1\webapps\FoundIt\WEB-INF\lib\`
