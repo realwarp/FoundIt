@@ -21,6 +21,8 @@
         <div class="alert error">Incorrect username or password.</div>
     <% } else if ("invalid".equals(request.getParameter("error"))) { %>
         <div class="alert error">Please enter both fields.</div>
+    <% } else if ("login".equals(request.getParameter("error"))) { %>
+        <div class="alert error">Please log in to access the staff area.</div>
     <% } %>
 
     <form action="staff-login" method="post" class="form">
