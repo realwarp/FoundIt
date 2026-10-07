@@ -1,7 +1,6 @@
 build/
-.DS_Store
-Thumbs.db
 *.class
 *.log
-.vscode/.classpath
-.vscode/.project
+.DS_Store
+Thumbs.db
+WebContent/WEB-INF/lib/*.jar

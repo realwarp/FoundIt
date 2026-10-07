@@ -1,8 +1,6 @@
 {
-  "java.project.sourcePaths": [
-    "src"
-  ],
-  "java.project.outputPath": "build/classes",
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "WebContent/WEB-INF/classes",
   "java.project.referencedLibraries": [
     "C:/apache-tomcat-10.1/lib/*.jar",
     "WebContent/WEB-INF/lib/*.jar"

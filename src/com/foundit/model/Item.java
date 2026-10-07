@@ -2,43 +2,66 @@ package com.foundit.model;
 
 public class Item {
     private int id;
-    private int userId;
-    private String userName;
-    private String title;
-    private String itemType;
-    private String location;
-    private String description;
-    private String contact;
+    private String itemName;
+    private String photo;
+    private String foundLocation;
+    private String givenBy;
+    private String dateFound;
     private String status;
-    private String createdAt;
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public int getUserId() { return userId; }
-    public void setUserId(int userId) { this.userId = userId; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getUserName() { return userName; }
-    public void setUserName(String userName) { this.userName = userName; }
+    public String getItemName() {
+        return itemName;
+    }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
 
-    public String getItemType() { return itemType; }
-    public void setItemType(String itemType) { this.itemType = itemType; }
+    public String getPhoto() {
+        return photo;
+    }
 
-    public String getLocation() { return location; }
-    public void setLocation(String location) { this.location = location; }
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getFoundLocation() {
+        return foundLocation;
+    }
 
-    public String getContact() { return contact; }
-    public void setContact(String contact) { this.contact = contact; }
+    public void setFoundLocation(String foundLocation) {
+        this.foundLocation = foundLocation;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public String getGivenBy() {
+        return givenBy;
+    }
 
-    public String getCreatedAt() { return createdAt; }
-    public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
+    public void setGivenBy(String givenBy) {
+        this.givenBy = givenBy;
+    }
+
+    public String getDateFound() {
+        return dateFound;
+    }
+
+    public void setDateFound(String dateFound) {
+        this.dateFound = dateFound;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

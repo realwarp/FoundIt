@@ -8,15 +8,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/logout")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/staff-logout")
+public class StaffLogoutServlet extends HttpServlet {
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        HttpSession session = req.getSession(false);
+
+        HttpSession session = request.getSession(false);
+
         if (session != null) {
             session.invalidate();
         }
-        res.sendRedirect(req.getContextPath() + "/login.jsp?logout=1");
+
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
 }
