@@ -18,6 +18,7 @@ echo Compiling FoundIt...
 
 javac -cp "%TOMCAT%\lib\servlet-api.jar;WebContent\WEB-INF\lib\*" ^
       -d "WebContent\WEB-INF\classes" ^
+      src\com\foundit\filter\StaffAuthFilter.java ^
       src\com\foundit\model\Item.java ^
       src\com\foundit\util\DBConnection.java ^
       src\com\foundit\servlet\*.java
