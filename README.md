@@ -1,4 +1,4 @@
-# FoundIt — Campus Lost & Found
+# FoundIt - Campus Lost & Found
 
 FoundIt is a Java web application for a college office to record lost items and let students check which items are still available. The project is designed as a small, practical demo of a lost-and-found workflow using Java servlets, JSP, and MySQL.
 
