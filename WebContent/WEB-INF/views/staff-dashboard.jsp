@@ -54,23 +54,6 @@
         <div class="alert error">Invalid item request.</div>
     <% } %>
 
-    <section class="stats">
-        <div class="stat">
-            <span>Available</span>
-            <strong><%=request.getAttribute("available")%></strong>
-        </div>
-
-        <div class="stat">
-            <span>Added Today</span>
-            <strong><%=request.getAttribute("addedToday")%></strong>
-        </div>
-
-        <div class="stat">
-            <span>Collected</span>
-            <strong><%=request.getAttribute("collected")%></strong>
-        </div>
-    </section>
-
     <section class="panel-section">
         <div class="section-title">
             <div>

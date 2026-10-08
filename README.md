@@ -1,48 +1,52 @@
-# FoundIt — Simple Campus Lost & Found
+# FoundIt — Campus Lost & Found
 
-FoundIt is a small college mini-project for recording items handed to the college office and letting students view what is currently available.
+FoundIt is a Java web application for a college office to record lost items and let students check which items are still available. The project is designed as a small, practical demo of a lost-and-found workflow using Java servlets, JSP, and MySQL.
 
-The project is intentionally simple so it is easy to build, explain and demonstrate.
+## What the app does
 
-## Working
+### Staff flow
 
-### Staff
-
-1. Open FoundIt.
-2. Choose **Staff Login**.
-3. Login with the staff account.
-4. Add an item with:
+1. Open the app and go to Staff Login.
+2. Sign in with the configured staff account.
+3. Add a lost item with:
    - item name
    - photo
    - where it was found
-   - who gave it to staff
+   - who handed it in
    - date found
-5. The item is stored in MySQL.
-6. When a student collects it, staff clicks **Mark as Collected**.
-7. The item status changes from AVAILABLE to COLLECTED.
+4. View the dashboard of all recorded items.
+5. Mark an item as collected once it has been returned.
 
-### Student / Guest
+### Guest flow
 
-1. Open FoundIt.
-2. Choose **Guest Access**.
-3. View the available items.
-4. Identify the item and go to the college staff/office to collect it.
+1. Open the home page.
+2. Use the "View Available Items" option.
+3. Browse the currently uncollected items.
+4. Search by item name if needed.
+5. Visit the college office to claim the item.
 
-There is no student account system, messaging system, claims system or payment system.
+## Features
 
-## Technologies
+- Staff-only dashboard protected by a servlet session check
+- Secure login for staff using the `staff` table
+- Image upload support for lost items
+- Item status tracking: `AVAILABLE` and `COLLECTED`
+- Guest browsing of only available items
+- Search by item name on the guest page
+- Built-in deployment scripts for local Tomcat setup
 
-- Java
+## Tech stack
+
+- Java 21
+- Jakarta Servlet API
 - JSP
-- Java Servlets
 - JDBC
 - MySQL
-- HTML
-- CSS
-- Apache Tomcat
-- VS Code
+- Apache Tomcat 10.1
+- HTML and CSS
+- VS Code with Java support
 
-JavaScript and Maven are intentionally not required.
+No Maven is required for this project.
 
 ## Project structure
 
@@ -50,16 +54,21 @@ JavaScript and Maven are intentionally not required.
 FoundIt/
 ├── database/
 │   └── schema.sql
-├── src/com/foundit/
-│   ├── model/Item.java
-│   ├── servlet/
-│   │   ├── AddItemServlet.java
-│   │   ├── CollectItemServlet.java
-│   │   ├── GuestItemsServlet.java
-│   │   ├── StaffDashboardServlet.java
-│   │   ├── StaffLoginServlet.java
-│   │   └── StaffLogoutServlet.java
-│   └── util/DBConnection.java
+├── src/
+│   └── com/foundit/
+│       ├── filter/
+│       │   └── StaffAuthFilter.java
+│       ├── model/
+│       │   └── Item.java
+│       ├── servlet/
+│       │   ├── AddItemServlet.java
+│       │   ├── CollectItemServlet.java
+│       │   ├── GuestItemsServlet.java
+│       │   ├── StaffDashboardServlet.java
+│       │   ├── StaffLoginServlet.java
+│       │   └── StaffLogoutServlet.java
+│       └── util/
+│           └── DBConnection.java
 ├── WebContent/
 │   ├── WEB-INF/
 │   │   ├── classes/
@@ -69,48 +78,49 @@ FoundIt/
 │   │       ├── add-item.jsp
 │   │       ├── guest-items.jsp
 │   │       └── staff-dashboard.jsp
-│   ├── css/style.css
+│   ├── css/
+│   │   └── style.css
 │   ├── index.jsp
-│   └── staff-login.jsp
+│   ├── staff-login.jsp
+│   └── uploads/
 ├── build.bat
 ├── deploy.bat
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ## Requirements
 
-Install:
+Install the following before running the app:
 
 1. JDK 21
 2. Apache Tomcat 10.1
 3. MySQL 8.4+
-4. VS Code with Extension Pack for Java
-5. MySQL Connector/J
+4. VS Code with Java support
+5. MySQL Connector/J JAR
 
-No Maven is needed.
+## 1. Create the database
 
-## 1. Set up MySQL
-
-Open MySQL Workbench and run the contents of:
+Run the SQL script in:
 
 `database/schema.sql`
 
-The script creates the `foundit_db` database, creates the tables and inserts the demo staff account:
+This creates the `foundit_db` database, the `staff` and `items` tables, and inserts the demo staff account:
 
 ```text
 Username: staff
 Password: foundit123
 ```
 
-Change these values before using the project anywhere outside a college demo.
+If you are using this for anything beyond a demo, change the default credentials.
 
-## 2. Configure JDBC
+## 2. Configure the database connection
 
 Open:
 
 `src/com/foundit/util/DBConnection.java`
 
-Set your MySQL username and password:
+Update the username and password to match your MySQL installation:
 
 ```java
 private static final String USER = "root";
@@ -119,40 +129,39 @@ private static final String PASSWORD = "YOUR_MYSQL_PASSWORD";
 
 ## 3. Add MySQL Connector/J
 
-Download MySQL Connector/J from:
+Download the connector from:
 
 https://dev.mysql.com/downloads/connector/j/
 
-The connector JAR is intentionally not stored in Git. After cloning this
-repository, download Connector/J and copy the JAR into:
+Copy the JAR into:
 
 `WebContent/WEB-INF/lib/`
 
-Any file matching `mysql-connector-j-*.jar` is accepted. Example:
+The folder accepts any file matching:
 
-`mysql-connector-j-26.7.0.jar`
+`mysql-connector-j-*.jar`
 
 ## 4. Configure Tomcat path
 
-The included batch files use:
+The helper scripts expect Tomcat at:
 
 `C:\Program Files (x86)\Apache Software Foundation\Tomcat 10.1`
 
-If Tomcat is installed elsewhere, edit the `TOMCAT` line in both batch files.
+If your installation is elsewhere, update the `TOMCAT` path in both `build.bat` and `deploy.bat`.
 
-## 5. Build
+## 5. Build the project
 
-Open a terminal in the project folder and run:
+From the project root, run:
 
 ```bat
 build.bat
 ```
 
-This compiles the Java source into:
+This compiles the Java classes into:
 
 `WebContent/WEB-INF/classes`
 
-## 6. Deploy
+## 6. Deploy locally
 
 Run:
 
@@ -160,71 +169,62 @@ Run:
 deploy.bat
 ```
 
-Then start Tomcat:
+This script:
 
-```bat
-C:\Program Files (x86)\Apache Software Foundation\Tomcat 10.1\bin\startup.bat
-```
+- builds the application
+- copies the web app to Tomcat
+- backs up the `uploads` directory before redeploy
+- starts Tomcat and opens the app in the browser
 
-Open:
+Once deployment is complete, open:
 
 http://localhost:8080/FoundIt/
 
-## 7. Test the project
+If the browser does not open automatically, you can start Tomcat manually with:
 
-### Staff test
+```bat
+"C:\Program Files (x86)\Apache Software Foundation\Tomcat 10.1\bin\startup.bat"
+```
 
-- Staff Login
-- username: `staff`
-- password: `foundit123`
-- Add a test item
-- Check that it appears in the dashboard
-- Mark it as collected
+## 7. How the application works
 
-### Guest test
+### Staff login
 
-- Open **View Available Items** from the home page
-- Check that only AVAILABLE items are shown
+The login form posts the username and password to `StaffLoginServlet`. The servlet checks the `staff` table and creates a session when the credentials match.
 
-Guest access does not create an account or require a session.
+### Staff authorization
 
-## Upload storage
+`StaffAuthFilter` blocks access to staff-only pages unless a valid `staffUser` session exists.
 
-Uploaded images are served from the application's `uploads` directory so the
-JSP image paths remain simple. Before replacing the deployed application,
-`deploy.bat` copies that directory to:
+### Adding an item
 
-`Tomcat\webapps\FoundItUploads\`
+`AddItemServlet` validates the form fields and uploaded image, saves the image to the app's `uploads` folder, and inserts the item into the MySQL `items` table with status `AVAILABLE`.
 
-It restores the files after deployment, so normal redeployment does not delete
-previously uploaded photos.
+### Dashboard
 
-## Viva explanation
+`StaffDashboardServlet` loads all items and shows them in reverse order of insertion. Staff can mark a record as collected from the dashboard.
 
-### Why JSP?
-JSP is used for the web pages. It can receive data from a Servlet and display it.
+### Guest item list
 
-### Why Servlet?
-Servlets handle requests such as login, adding an item and marking an item collected.
+`GuestItemsServlet` selects only records with `status = 'AVAILABLE'` and supports searching by item name.
 
-### Why JDBC?
-JDBC is the bridge between Java and MySQL.
+### Marking collected
 
-### Why MySQL?
-MySQL stores the staff account and item records permanently.
+`CollectItemServlet` updates an item from `AVAILABLE` to `COLLECTED` when the staff clicks the action button.
 
-### How does login work?
-The login form sends username and password to a Servlet. The Servlet uses JDBC to check the staff table. If the values match, a session is created and the staff dashboard is opened.
+## Default login
 
-### How does adding an item work?
-The staff fills the form. The Servlet receives the form data and photo, stores the photo in the web application's uploads folder, then inserts the item details into MySQL with status AVAILABLE.
+The demo account created by the SQL script is:
 
-### How does a guest see items?
-The public guest Servlet selects only rows where status = AVAILABLE and passes them to the JSP page.
+```text
+Username: staff
+Password: foundit123
+```
 
-### How does collection work?
-The staff clicks Mark as Collected. The Servlet updates the item's status from AVAILABLE to COLLECTED.
+## Upload storage behavior
 
-## Important note
+Uploaded photos are stored in the application's `uploads` directory and are referenced from the JSP pages using their file names. The deployment script backs up existing uploads before replacing the application and restores them after deployment so photos are not lost during a redeploy.
 
-This is a college demonstration project. It is intentionally kept simple rather than being a production-ready lost-and-found platform.
+## Notes
+
+This project is a simple academic/demo-type lost-and-found system. It is intentionally lightweight and does not include advanced user roles, messaging, claims workflows, or production-grade security features.

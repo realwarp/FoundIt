@@ -28,12 +28,12 @@ public class AddItemServlet extends HttpServlet {
             "INSERT INTO items(item_name, photo, found_location, given_by, date_found) "
             + "VALUES (?, ?, ?, ?, ?)";
 
-        @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/add-item.jsp")
-            .forward(request, response);
-        }
+                .forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
