@@ -41,6 +41,12 @@ public class StaffLoginServlet extends HttpServlet {
 
             try (ResultSet result = statement.executeQuery()) {
                 if (result.next()) {
+                    jakarta.servlet.http.HttpSession oldSession =
+                            request.getSession(false);
+                    if (oldSession != null) {
+                        oldSession.invalidate();
+                    }
+
                     request.getSession(true).setAttribute(
                             "staffUser", result.getString("username"));
 

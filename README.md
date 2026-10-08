@@ -55,7 +55,6 @@ FoundIt/
 │   ├── servlet/
 │   │   ├── AddItemServlet.java
 │   │   ├── CollectItemServlet.java
-│   │   ├── GuestLoginServlet.java
 │   │   ├── GuestItemsServlet.java
 │   │   ├── StaffDashboardServlet.java
 │   │   ├── StaffLoginServlet.java
@@ -71,7 +70,6 @@ FoundIt/
 │   │       ├── guest-items.jsp
 │   │       └── staff-dashboard.jsp
 │   ├── css/style.css
-│   ├── guest-login.jsp
 │   ├── index.jsp
 │   └── staff-login.jsp
 ├── build.bat
@@ -125,21 +123,22 @@ Download MySQL Connector/J from:
 
 https://dev.mysql.com/downloads/connector/j/
 
-Copy the JAR into:
+The connector JAR is intentionally not stored in Git. After cloning this
+repository, download Connector/J and copy the JAR into:
 
 `WebContent/WEB-INF/lib/`
 
-Example:
+Any file matching `mysql-connector-j-*.jar` is accepted. Example:
 
 `mysql-connector-j-26.7.0.jar`
 
 ## 4. Configure Tomcat path
 
-The included batch files assume:
+The included batch files use:
 
-`C:\apache-tomcat-10.1`
+`C:\Program Files (x86)\Apache Software Foundation\Tomcat 10.1`
 
-Edit `build.bat` and `deploy.bat` if your Tomcat folder is somewhere else.
+If Tomcat is installed elsewhere, edit the `TOMCAT` line in both batch files.
 
 ## 5. Build
 
@@ -164,7 +163,7 @@ deploy.bat
 Then start Tomcat:
 
 ```bat
-C:\apache-tomcat-10.1\bin\startup.bat
+C:\Program Files (x86)\Apache Software Foundation\Tomcat 10.1\bin\startup.bat
 ```
 
 Open:
@@ -184,9 +183,21 @@ http://localhost:8080/FoundIt/
 
 ### Guest test
 
-- Logout if needed
-- Guest Access
+- Open **View Available Items** from the home page
 - Check that only AVAILABLE items are shown
+
+Guest access does not create an account or require a session.
+
+## Upload storage
+
+Uploaded images are served from the application's `uploads` directory so the
+JSP image paths remain simple. Before replacing the deployed application,
+`deploy.bat` copies that directory to:
+
+`Tomcat\webapps\FoundItUploads\`
+
+It restores the files after deployment, so normal redeployment does not delete
+previously uploaded photos.
 
 ## Viva explanation
 
@@ -209,7 +220,7 @@ The login form sends username and password to a Servlet. The Servlet uses JDBC t
 The staff fills the form. The Servlet receives the form data and photo, stores the photo in the web application's uploads folder, then inserts the item details into MySQL with status AVAILABLE.
 
 ### How does a guest see items?
-The guest Servlet selects only rows where status = AVAILABLE and passes them to the JSP page.
+The public guest Servlet selects only rows where status = AVAILABLE and passes them to the JSP page.
 
 ### How does collection work?
 The staff clicks Mark as Collected. The Servlet updates the item's status from AVAILABLE to COLLECTED.

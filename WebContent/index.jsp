@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +27,7 @@
         </p>
 
         <div class="hero-actions">
-            <a class="btn btn-primary" href="guest-login.jsp">
+            <a class="btn btn-primary" href="guest-items">
                 View Available Items
             </a>
             <a class="btn btn-secondary" href="staff-login.jsp">

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +36,7 @@
         <button class="btn btn-primary full" type="submit">Login</button>
     </form>
 
-    <a class="back-link" href="index.jsp">← Back to FoundIt</a>
+    <a class="back-link" href="index.jsp">&larr; Back to FoundIt</a>
 </div>
 
 </body>

@@ -1,5 +1,5 @@
 <%@ page import="java.util.List,java.util.Collections,com.foundit.model.Item" %>
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<Item> items = (List<Item>) request.getAttribute("items");
     if (items == null) items = Collections.emptyList();
