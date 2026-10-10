@@ -22,8 +22,7 @@ FoundIt is a Java web application for a college office to record lost items and 
 1. Open the home page.
 2. Use the "View Available Items" option.
 3. Browse the currently uncollected items.
-4. Search by item name if needed.
-5. Visit the college office to claim the item.
+4. Visit the college office to claim the item.
 
 ## Features
 
@@ -32,7 +31,6 @@ FoundIt is a Java web application for a college office to record lost items and 
 - Image upload support for lost items
 - Item status tracking: `AVAILABLE` and `COLLECTED`
 - Guest browsing of only available items
-- Search by item name on the guest page
 - Built-in deployment scripts for local Tomcat setup
 
 ## Tech stack
@@ -206,7 +204,7 @@ The login form posts the username and password to `StaffLoginServlet`. The servl
 
 ### Guest item list
 
-`GuestItemsServlet` selects only records with `status = 'AVAILABLE'` and supports searching by item name.
+`GuestItemsServlet` selects only records with `status = 'AVAILABLE'`.
 
 ### Marking collected
 

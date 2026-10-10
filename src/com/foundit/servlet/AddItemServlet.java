@@ -65,6 +65,7 @@ public class AddItemServlet extends HttpServlet {
             return;
         }
 
+        // Store a generated name so two uploaded files never overwrite each other.
         String submittedName = photoPart.getSubmittedFileName();
         String extension = "";
 
@@ -86,6 +87,7 @@ public class AddItemServlet extends HttpServlet {
 
         Path target = directory.resolve(storedName).normalize();
 
+        // Save the image before inserting its filename into the database.
         try (InputStream input = photoPart.getInputStream()) {
             Files.copy(input, target, StandardCopyOption.REPLACE_EXISTING);
         }

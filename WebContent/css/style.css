@@ -214,10 +214,6 @@ input {
     letter-spacing: -0.03em;
 }
 
-.guest-card {
-    text-align: left;
-}
-
 .muted {
     color: var(--muted);
     line-height: 1.65;

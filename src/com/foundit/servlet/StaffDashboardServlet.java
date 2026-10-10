@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/staff-dashboard")
 public class StaffDashboardServlet extends HttpServlet {
 
-    private static final String ITEMS_SQL =
+    private static final String SQL =
             "SELECT id, item_name, photo, found_location, given_by, "
             + "DATE_FORMAT(date_found, '%d %b %Y'), status "
             + "FROM items ORDER BY id DESC";
@@ -30,10 +30,10 @@ public class StaffDashboardServlet extends HttpServlet {
 
         List<Item> items = new ArrayList<>();
 
-                try (Connection connection = DBConnection.getConnection();
-                         PreparedStatement itemStatement = connection.prepareStatement(ITEMS_SQL)) {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL)) {
 
-            try (ResultSet result = itemStatement.executeQuery()) {
+            try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
                     Item item = new Item();
                     item.setId(result.getInt(1));

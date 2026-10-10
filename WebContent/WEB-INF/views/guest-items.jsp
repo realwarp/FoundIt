@@ -30,7 +30,6 @@
 
 <main class="page-shell">
     <section class="page-heading center-heading">
-        <p class="eyebrow">GUEST ACCESS</p>
         <h1>Available Items</h1>
         <p class="muted">
             Items currently kept by the college office.

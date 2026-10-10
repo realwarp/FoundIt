@@ -32,7 +32,13 @@ public class CollectItemServlet extends HttpServlet {
                  PreparedStatement statement = connection.prepareStatement(SQL)) {
 
                 statement.setInt(1, id);
-                statement.executeUpdate();
+                int rowsUpdated = statement.executeUpdate();
+
+                if (rowsUpdated == 0) {
+                    response.sendRedirect(
+                            request.getContextPath() + "/staff-dashboard?error=invalid");
+                    return;
+                }
             }
 
         } catch (NumberFormatException e) {

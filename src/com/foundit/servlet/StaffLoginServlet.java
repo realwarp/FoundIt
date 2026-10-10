@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/staff-login")
 public class StaffLoginServlet extends HttpServlet {
@@ -41,8 +42,7 @@ public class StaffLoginServlet extends HttpServlet {
 
             try (ResultSet result = statement.executeQuery()) {
                 if (result.next()) {
-                    jakarta.servlet.http.HttpSession oldSession =
-                            request.getSession(false);
+                    HttpSession oldSession = request.getSession(false);
                     if (oldSession != null) {
                         oldSession.invalidate();
                     }

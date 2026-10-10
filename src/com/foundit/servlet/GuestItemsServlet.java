@@ -22,8 +22,7 @@ public class GuestItemsServlet extends HttpServlet {
     private static final String SQL =
             "SELECT id, item_name, photo, found_location, date_found, status "
             + "FROM items "
-            + "WHERE status = 'AVAILABLE' "
-            + "AND item_name LIKE ? "
+            + "WHERE status = 'AVAILABLE' AND item_name LIKE ? "
             + "ORDER BY date_found DESC";
 
     @Override
@@ -58,7 +57,6 @@ public class GuestItemsServlet extends HttpServlet {
         } catch (Exception e) {
             throw new ServletException("Unable to load available items.", e);
         }
-
         request.setAttribute("items", items);
         request.setAttribute("search", search);
 
