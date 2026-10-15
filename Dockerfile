@@ -28,4 +28,4 @@ COPY --from=build /app/WebContent/ /usr/local/tomcat/webapps/FoundIt/
 # Render injects PORT at runtime (commonly 10000); locally this defaults to 8080.
 EXPOSE 10000
 
-CMD ["sh", "-c", "sed -i \"s/port=\\\"8080\\\"/port=\\\"\${PORT:-8080}\\\"/\" \"$CATALINA_HOME/conf/server.xml\" && exec catalina.sh run"]
+CMD ["sh", "-c", "sed -i \"s/port=\\\"8080\\\"/port=\\\"${PORT:-8080}\\\"/\" \"$CATALINA_HOME/conf/server.xml\" && exec catalina.sh run"]
